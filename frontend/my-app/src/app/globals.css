@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    margin:0;
+    background-color: rgb(188, 255, 255);  
+}
+.custom-img
+{
+    background-image: url('https://img.freepik.com/free-photo/finance-elements-frame_23-2148080960.jpg?w=900&t=st=1688371283~exp=1688371883~hmac=87b775b03d83071f2a139ec90986c8fed9f236c3e6250ad2f15a25bbb98d508c');
+}
+
