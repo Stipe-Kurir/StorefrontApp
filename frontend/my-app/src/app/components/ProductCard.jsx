@@ -10,7 +10,6 @@ const ProductCard = ({naziv,slika}) => {
 
       <div className='flex justify-center items-center w-full pt-4 pb-4 bg-slate-500 '>{naziv}</div>
 
-      <div className='flex justify-center items-center w-full pt-4 pb-4  bg-slate-500'>22 €</div>
 
     </div>
   )

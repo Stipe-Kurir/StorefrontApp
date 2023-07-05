@@ -3,6 +3,7 @@
 import ProductCard from '@/app/components/ProductCard'
 import Medusa from "@medusajs/medusa-js"
 import React, { useEffect, useState } from "react"
+import Link from 'next/link'
 
 const medusa = new Medusa({ 
   baseUrl:  "http://localhost:9000", 
@@ -34,30 +35,30 @@ useEffect(() => {
     <div className="flex justify-center items-center pt-20  w-full ">
       <div className=" flex justify-center items-center  flex-col  p-10 w-full h-full">
        
-        <div className='sticky top-20 bg-red-300 w-9/12 flex justify-center items-center pt-3 gap-3 flex-col z-10'>
+        <div className='sticky top-20 bg-red-300 w-9/12 flex justify-center items-center pt-6 pb-6 gap-3 flex-col z-10'>
           <div className="flex justify-center ">
-            <input className='w-9/12' type="text" placeholder='Search item ...'></input>
+            <input className='w-9/12' type="text" placeholder='Filter items by collection ...'></input>
           </div>
-          <div>Filter za birat artikle</div>
-          <div>napravi za cijene ka traku</div>
         </div>
 
         <div className= "w-9/12  justify-center grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7 pt-4 ">
           {/* Ovdje ces mapirati, također i filtrirat pa ce se prikazat sta zelis */}
-          {products.map((product) => (
+          {/* {products.map((product) => (
             <ProductCard key={product.id} naziv={product.title} slika={product.images[0].url} />
       
        
-      ))}
+      ))} */}
 
            
-           {/* <ProductCard  naziv="T-shirt" cijena={22} slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
-           <ProductCard  naziv="T-shirt" cijena={22} slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
-           <ProductCard  naziv="T-shirt" cijena={22} slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
-           <ProductCard  naziv="T-shirt" cijena={22} slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
-           <ProductCard  naziv="T-shirt" cijena={22} slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
-           <ProductCard  naziv="T-shirt" cijena={22} slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
-           <ProductCard  naziv="T-shirt" cijena={22} slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/>   */}
+           <Link href="/pages/product_info/">
+           <ProductCard  naziv="T-shirt"  slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
+           </Link>
+           {/* <ProductCard  naziv="T-shirt"  slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
+           <ProductCard  naziv="T-shirt"  slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
+           <ProductCard  naziv="T-shirt"  slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
+           <ProductCard  naziv="T-shirt"  slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
+           <ProductCard  naziv="T-shirt"  slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/> 
+           <ProductCard  naziv="T-shirt"  slika={"https://www.mrporter.com/variants/images/3633577411310824/in/w2000_q60.jpg"}/>    */}
 
           </div>
       </div>
