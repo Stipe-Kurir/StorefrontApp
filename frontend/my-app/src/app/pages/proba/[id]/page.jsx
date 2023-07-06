@@ -2,6 +2,9 @@
 
 import React, { useEffect, useState } from "react"
 import Medusa from "@medusajs/medusa-js"
+import { storeProductCategoryKeys } from "medusa-react"
+import products from "../../products/page"
+
 
 
 
@@ -15,30 +18,68 @@ function proba() {
 // });
 
 const [cat,setCat]=useState([])
+const [prod,setProd]=useState([])
 
 useEffect(() => {
-medusa.productCategories.list()
-.then(({ product_categories, limit, offset, count }) => {
-  setCat(product_categories)
-  // console.log(product_categories.length);
-});
+  
+  medusa.products.retrieve("prod_01H49B6FEJ1CG5V0S7PWREV51K")
+  .then(({ product }) => {
+    setCat(product.variants)
+    setProd(product.images)
+  });
 
 })
+
+// medusa.productCategories.list()
+// .then(({ product_categories, limit, offset, count }) => {
+//   setCat(product_categories)
+//   // console.log(product_categories.length);
+// });
+
+// })
+
+
 
 
 
 return (
- 
-  <ul>
-    {cat.map((product) => (
-        <li key={product.id}>
-            {product.name} 
-        </li>
+
+  <div>
+  { //ZA MAPIRANJE VARIANTS!!
+  cat.map((product) => (
+    <div key={product.id}>
+        <p>{product.title},{product.prices[1].amount} </p> 
+      </div>
+           
+
+      
        
-  ))}
-   </ul> 
+      ))}
+      { //ZA MAPIRANJE SLIKA->stavit da korisnik moze vidjeti obe strane!!
+      prod.map((product)=>
+      <div key={product.id}>
+        <img src={product.url}/>
+      </div>
+      )}
+        
+  </div>
+ 
+//   <ul>
+//     {cat.map((product) => (
+//         <li key={product.id}>
+//             {product.name} 
+//         </li>
+       
+//   ))}
+//    </ul> 
+// )
+//     }
+
+
+
 )
-    }
+
+}
 
 export default proba
 
