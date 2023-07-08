@@ -4,14 +4,13 @@ import React from 'react'
 import Link from 'next/link'
 import {AiOutlineMenu,AiOutlineClose}  from 'react-icons/ai'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-
-
+import { usePathname } from 'next/navigation'
 
 
 const Navbar = () => {
 
-  const router=useRouter()
+
+  const pathname=usePathname()
 
   const navLink=[
     {
@@ -25,18 +24,18 @@ const Navbar = () => {
   ];
 
   const [menu,setMenu]=useState(false)
-  const [current,setCurrent]=useState(1)
-
+  const [current,setCurrent]=useState("Home")
 
   
   const changeMenu=()=>{
     setMenu(!menu)
   }
 
-  console.log(router.pathname)
+ console.log(pathname)
+
 
   return (
-    <div className='fixed left-0 top-0 w-full h-20 z-50 bg-red-400'>
+    <div className='fixed left-0 top-0 w-full h-20 z-50  bg-white'>
       <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 '>
 
         <Link href="/">
@@ -45,58 +44,53 @@ const Navbar = () => {
         
         <ul className='hidden sm:flex'>
        
-           {/* {navLink.map(({link,name})=>(
-            <li  key={name} 
+            {navLink.map(({link,name})=>(
+            <li onClick={()=>setCurrent(name)}  key={name} 
                 className="p-4 hover:underline">
               <Link
                key={name}
                href={link}
-               className={` ${router.pathname === link  ? ' border border-black': ''}`}
-               >{router.pathname} 2222</Link>
+               className={`${pathname === link  ? 'underline': ''}`}
+               >{name}</Link>
                </li>
-          ))}  */}
-          <li className="p-4 hover:underline">
-            <Link href="/">Home</Link>
-          </li>
-          <li className="p-4 hover:underline">
-            <Link href="/pages/products">Products</Link>
-          </li>
-        </ul>
+          ))}  
+
+        </ul> 
 
         {/*MOBILE BUTTON*/ }
         <div className="block sm:hidden z-10">
           {
-            menu ? <AiOutlineClose size={20} className="text-white cursor-pointer" onClick={changeMenu}/>
+            menu ? <AiOutlineClose size={20} className="text-black cursor-pointer" onClick={changeMenu}/>
               :
               <AiOutlineMenu size={20} className="text-black cursor-pointer" onClick={changeMenu} />
           }
         </div>
 
-        {/* Mobile menu*/}
-        <div className={
-          menu ? 
-          "sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center text-white ease-in duration-300" 
-           :
-          "sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center text-white ease-in duration-300"
-        }
-          >
-          <ul>
-          <li className="p-4 text-4xl hover:text-gray-500 ">
-          <Link href="/">
-            <button onClick={changeMenu}>
-              Home
-            </button>
-            </Link>
-          </li>
-          <li className="p-4 text-4xl hover:text-gray-500 ">
-           <Link href="/pages/products">
-              <button onClick={changeMenu}>
-                Products
-              </button>
-            </Link>
-          </li>
-          </ul>
-        </div>
+         {/* Mobile menu*/}
+          <div className={
+            menu ? 
+            "sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-white text-center text-black  ease-in duration-300" 
+            :
+            "sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-white text-center text-black ease-in duration-300"
+          }
+            >
+            <ul>
+
+            {navLink.map(({link,name})=>(
+              <li onClick={()=>{changeMenu();setCurrent(name)}}  key={name} 
+                  className="p-4 hover:underline text-4xl  text-black">
+                <Link
+                key={name}
+                href={link}
+                className={`${pathname === link  ? 'underline': ''}`}
+                >{name}</Link>
+                </li>
+            ))}  
+            
+            </ul>
+
+
+          </div>
       </div>
     </div>
   )

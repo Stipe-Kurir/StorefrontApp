@@ -8,6 +8,7 @@ import { useParams } from "next/navigation"
 
 import Medusa from "@medusajs/medusa-js"
 import ProductCardImage from '@/app/components/ProductCardImage'
+import ProductVariant from '@/app/components/ProductVariant'
 
 
 const medusa = new Medusa({ 
@@ -27,6 +28,8 @@ const product_info = () => {
   const [prodImg,setProdImg]=useState([])
 
   const [numProducts,setNumProducts]=useState(1)
+  const [currentVPrice,setCurrentVPrice]=useState("")
+  const [defaultPrice,setDefaultPrice]=useState()
 
 
 
@@ -43,9 +46,9 @@ const product_info = () => {
       setProduct(product)
       setProductV(product.variants)
       setProdImg(product.images)
+      setDefaultPrice(product.variants[0].prices[0].amount)
     });
   } )
-
   
   //ZA SLIKE NEMOJ KORISTIT MAP JER TI NES NECE NGEO PROBAJ SA INDEXOM!!
   //  console.log(prodImg.length)
@@ -72,13 +75,28 @@ const product_info = () => {
          </div>
 
          <div className='w-full sm:w-full sm:h-full bg-red-400 flex flex-col justify-start ' >
+
            <div className='w-full p-3 bg-orange-200 font-bold text-[30px] '>{product.title}</div>
-           <div className='w-full p-3 bg-orange-200 text-[20px]'>30 € </div>
+           <div className='w-full p-3 bg-orange-200 text-[20px]' key={product.id}>
+                  {currentVPrice==="" 
+                  ?
+                  <p>{defaultPrice} € </p> 
+                  :
+                  <p>{currentVPrice} € </p> 
+                   }
+                </div>
            <div className='w-full p-3 bg-orange-200 text-[12px] color-grey-200 '>{product.description}</div>
-           
-           {/* <div className='w-full p-3 bg-orange-200  '>{productV.prices[1].amount} €</div> */}
 
            <div className='w-full p-3 bg-orange-200  flex '>
+              <div className='w-[70%] bg-white flex justify-center'>
+
+            <ProductVariant productV={productV} setProductV={setProductV} setCurrentVPrice={setCurrentVPrice}/> 
+
+            </div>
+           </div>  
+
+
+           {/* <div className='w-full p-3 bg-orange-200  flex '>
               <div className='w-[70%] bg-white flex justify-center'>
                     <select className='cursor-pointer w-full pt-3 pb-3 pl-2 border-none bg-white text-[16px] ' id="opcije" name="opcije">
                       {productV.map((product) => (
@@ -86,7 +104,7 @@ const product_info = () => {
                         ))}
                     </select>
               </div>
-           </div>
+           </div>   */}
                           {/* necemo zadrzat,nego sa varijantama biramo*/}
                           {/*Pri kraj dana probaj->kad odabere varijantu da promini sliku*/ }
            {/* <div className='w-full p-3 bg-orange-200 flex '>
@@ -111,13 +129,12 @@ const product_info = () => {
 
        </div>
 
-      
           :
           /*IZMISLI NEKE PODATKE ZA PRODUCT DETAILS JER U BAZI IH NEMAS */
 
-          <div className='w-[400px]  lg:w-4/6   bg-slate-400 flex flex-col justify-center  gap-9 '>
-            <div className='w-full flex justify-end pt-3 pr-3'>
-            <AiOutlineClose size={20} className=" text-black font-bold cursor-pointer" onClick={changeDetails}/>
+          <div className='absolute top-[400px] w-[300px]  lg:w-[600px]  bg-slate-400 flex flex-col gap-9 '>
+            <div className='w-full flex justify-end pt-2 pr-2'>
+            <AiOutlineClose size={15} className=" text-black font-bold cursor-pointer" onClick={changeDetails}/>
             </div>
             <div>SVE O PROIZVODU</div>
             </div>
