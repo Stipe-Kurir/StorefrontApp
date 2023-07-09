@@ -36,12 +36,13 @@ const Navbar = () => {
 
   return (
     <div className='fixed left-0 top-0 w-full h-20 z-50  bg-white'>
-      <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 '>
-
+      <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 gap-2 '>
+      
         <Link href="/">
-        <h1 className='font-bold text-4xl '>E-SHOP</h1>
+        <img className='pt-2 pb-2 w-[200px]' src="https://res.cloudinary.com/zoominfo-com/image/upload/w_70,h_70,c_fit/medusajs.com"/>
         </Link>
-        
+    
+       
         <ul className='hidden sm:flex'>
        
             {navLink.map(({link,name})=>(

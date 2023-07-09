@@ -1,6 +1,5 @@
 "use client"
 
-import Select from '@/app/components/Select'
 import React from 'react'
 import { useState,useEffect } from 'react'
 import {AiOutlineClose}  from 'react-icons/ai'
@@ -9,6 +8,7 @@ import { useParams } from "next/navigation"
 import Medusa from "@medusajs/medusa-js"
 import ProductCardImage from '@/app/components/ProductCardImage'
 import ProductVariant from '@/app/components/ProductVariant'
+import ShowDetail from '@/app/components/ShowDetail'
 
 
 const medusa = new Medusa({ 
@@ -48,17 +48,8 @@ const product_info = () => {
       setProdImg(product.images)
       setDefaultPrice(product.variants[0].prices[0].amount)
     });
-  } )
+  },[])
   
-  //ZA SLIKE NEMOJ KORISTIT MAP JER TI NES NECE NGEO PROBAJ SA INDEXOM!!
-  //  console.log(prodImg.length)
-
-
-  //ako je neki odjevni predmet onda ce imat izbor velicina,boja i količina
-  //ako je MERCH->šalica ili neš onda samo ce imat izbor kolicina i eventualno boja ako ima
-  //to ces tavit ka uvjet ovisno o ID
-
-
 
   return (
     
@@ -66,18 +57,19 @@ const product_info = () => {
     <div className=" flex justify-center w-full h-screen ">
         {
             !description ? 
-         <div className='absolute top-28 sm:top-40 lg:top-60 grid  lg:w-4/6  sm:grid-cols-1 lg:grid-cols-2 pb-5 '>
+         <div className='absolute top-28 sm:top-40 lg:top-60 grid w-[60%] sm:w-[50%] lg:w-4/6 sm:grid-cols-1 lg:grid-cols-2 pb-5'>
          
-         <div className='w-full sm:w-full sm:h-full bg-red-200 flex flex-col justify-center items-center gap-2'>
+     
+         <div className='w-full sm:w-full  bg-slate-300 flex flex-col justify-center items-center gap-2'>
 
           <ProductCardImage slike={prodImg} slika={product.thumbnail}/>
             
          </div>
+      
+         <div className='w-full sm:w-full  bg-white flex flex-col items-center lg:items-start' >
 
-         <div className='w-full sm:w-full sm:h-full bg-red-400 flex flex-col justify-start ' >
-
-           <div className='w-full p-3 bg-orange-200 font-bold text-[30px] '>{product.title}</div>
-           <div className='w-full p-3 bg-orange-200 text-[20px]' key={product.id}>
+           <div className='w-[80%] p-3 font-bold text-[20px] sm:text-[30px]'>{product.title}</div>
+           <div className='w-[80%] p-3  text-[15px] sm:text-[20px] ' key={product.id}>
                   {currentVPrice==="" 
                   ?
                   <p>{defaultPrice} € </p> 
@@ -85,10 +77,10 @@ const product_info = () => {
                   <p>{currentVPrice} € </p> 
                    }
                 </div>
-           <div className='w-full p-3 bg-orange-200 text-[12px] color-grey-200 '>{product.description}</div>
+           <div className='w-[80%] p-3 text-[13px] hidden sm:block sm:text-[16px] color-grey-200 '>{product.description}</div>
 
-           <div className='w-full p-3 bg-orange-200  flex '>
-              <div className='w-[70%] bg-white flex justify-center'>
+           <div className='w-[80%] p-3   flex '>
+              <div className='w-full bg-white flex justify-center'>
 
             <ProductVariant productV={productV} setProductV={setProductV} setCurrentVPrice={setCurrentVPrice}/> 
 
@@ -96,33 +88,18 @@ const product_info = () => {
            </div>  
 
 
-           {/* <div className='w-full p-3 bg-orange-200  flex '>
-              <div className='w-[70%] bg-white flex justify-center'>
-                    <select className='cursor-pointer w-full pt-3 pb-3 pl-2 border-none bg-white text-[16px] ' id="opcije" name="opcije">
-                      {productV.map((product) => (
-                            <option className='cursor-pointer' key={product.id} value={product.title}>{product.title}</option>   
-                        ))}
-                    </select>
-              </div>
-           </div>   */}
-                          {/* necemo zadrzat,nego sa varijantama biramo*/}
-                          {/*Pri kraj dana probaj->kad odabere varijantu da promini sliku*/ }
-           {/* <div className='w-full p-3 bg-orange-200 flex '>
-             <Select opcija="color" opcija_prva="White" opcija_druga="Black" opcija_treca="Blue"/>
-           </div> */}
-
-           <div className='w-full p-3 bg-orange-200 flex  '>
-              <input className='w-[80px] sm:w-[20%] pt-3 pb-3 pl-3 outline-none' type="number" id="number_items" value={numProducts} onChange={changeNumber} name="number_items"
+           <div className='w-[80%] p-3 flex  '>
+              <input className='w-full bg-zinc-100  pt-3 pb-3 pl-3 font-bold outline-none' type="number" id="number_items" value={numProducts} onChange={changeNumber} name="number_items"
                min="1" max="10"/> 
                       
            </div>
 
            {/* STAVI DA TE VRATI NA PRODUCTS STRANICU  ili ako stignes napravi cart stranicu*/}
-           <div className='w-full p-3 bg-orange-200 flex '>
-             <button className='w-[70%] bg-slate-300 pt-3 pb-3'>Add to cart</button>
+           <div className=' w-[80%] p-3  flex '>
+             <button className='w-full bg-slate-300 font-bold pt-3 pb-3'>Add to cart</button>
            </div>
            
-           <div className='w-full p-3 bg-orange-200 '>
+           <div className='w-[80%] p-3'>
              <button onClick={changeDetails} className="hover:underline">Product Details</button>
            </div>
          </div>
@@ -130,15 +107,24 @@ const product_info = () => {
        </div>
 
           :
-          /*IZMISLI NEKE PODATKE ZA PRODUCT DETAILS JER U BAZI IH NEMAS */
 
-          <div className='absolute top-[400px] w-[300px]  lg:w-[600px]  bg-slate-400 flex flex-col gap-9 '>
+          <div className='absolute top-[300px] w-[300px]  lg:w-[600px] bg-white flex flex-col shadow-2xl'>
             <div className='w-full flex justify-end pt-2 pr-2'>
             <AiOutlineClose size={15} className=" text-black font-bold cursor-pointer" onClick={changeDetails}/>
             </div>
-            <div>SVE O PROIZVODU</div>
+            <div className='w-full flex flex-col items-center pb-2 font-bold text-[20px] sm:text-[25px]'>
+              <p>PRODUCT DETAILS</p>
             </div>
-
+            <div className='w-full flex flex-col justify-start pl-2 pb-2 gap-1 text-[12px] sm:text-[16px] '>
+              <ShowDetail name="Name" value={product.title}/>
+              <ShowDetail name="Description" value={product.description}/>
+              <ShowDetail name="Material" value={product.material}/>
+              <ShowDetail name="Weight" value={product.weight}/>
+              <ShowDetail name="Length" value={product.length}/>
+              <ShowDetail name="Height" value={product.height}/>
+              <ShowDetail name="Origin country" value={product.origin_country}/>
+            </div>
+            </div>
 
       }
 

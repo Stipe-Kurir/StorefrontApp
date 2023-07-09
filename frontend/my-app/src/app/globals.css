@@ -9,7 +9,8 @@ body{
 }
 .custom-img
 {
-    background-image: url('https://images.unsplash.com/photo-1586278500132-7c85dfbc51d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');
+     background-image: url('https://images.unsplash.com/photo-1586278500132-7c85dfbc51d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');
     /* background-image: url('https://img.freepik.com/free-photo/finance-elements-frame_23-2148080960.jpg?w=900&t=st=1688371283~exp=1688371883~hmac=87b775b03d83071f2a139ec90986c8fed9f236c3e6250ad2f15a25bbb98d508c'); */
-}
+    /* background-image: url("/slika_naslovna1.jpg");*/
+} 
 
