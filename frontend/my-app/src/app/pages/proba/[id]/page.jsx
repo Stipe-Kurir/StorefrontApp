@@ -64,16 +64,7 @@ return (
         
   </div>
  
-//   <ul>
-//     {cat.map((product) => (
-//         <li key={product.id}>
-//             {product.name} 
-//         </li>
-       
-//   ))}
-//    </ul> 
-// )
-//     }
+
 
 
 
