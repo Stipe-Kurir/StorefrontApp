@@ -26,12 +26,14 @@ const product_info = () => {
   const [product,setProduct]=useState([])
   const [productV,setProductV]=useState([])
   const [prodImg,setProdImg]=useState([])
-
   const [numProducts,setNumProducts]=useState(1)
   const [currentVPrice,setCurrentVPrice]=useState("")
   const [defaultPrice,setDefaultPrice]=useState()
 
 
+  const handleCart=()=>{
+    alert("Item added to cart")
+  }
 
   const changeDetails=()=>{
     setDescription(!description)
@@ -56,8 +58,8 @@ const product_info = () => {
 
     <div className=" flex justify-center w-full h-screen ">
         {
-            !description ? 
-         <div className='absolute top-28 sm:top-40 lg:top-60 grid w-[60%] sm:w-[50%] lg:w-4/6 sm:grid-cols-1 lg:grid-cols-2 pb-5'>
+            !description ?  
+         <div className='absolute top-28 sm:top-40 lg:top-60 grid w-[60%] sm:w-[50%] lg:w-[60%] sm:grid-cols-1 lg:grid-cols-2 pb-5'>
          
      
          <div className='w-full sm:w-full  bg-slate-300 flex flex-col justify-center items-center gap-2'>
@@ -96,7 +98,7 @@ const product_info = () => {
 
            {/* STAVI DA TE VRATI NA PRODUCTS STRANICU  ili ako stignes napravi cart stranicu*/}
            <div className=' w-[80%] p-3  flex '>
-             <button className='w-full bg-slate-300 font-bold pt-3 pb-3'>Add to cart</button>
+             <button className='w-full bg-slate-300 font-bold pt-3 pb-3' onClick={handleCart}>Add to cart</button>
            </div>
            
            <div className='w-[80%] p-3'>

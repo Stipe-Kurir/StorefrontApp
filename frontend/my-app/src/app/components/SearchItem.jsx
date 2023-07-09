@@ -13,15 +13,12 @@ const medusa = new Medusa({
 
 const SearchItem = ({setProducts}) => {
 
-
 const [input,setInput]=useState("")
-
     
 const changeSearchItem=(e)=>{
     setInput(e.target.value)
   }
-
-    
+ 
 const searchItem=(value)=>{
     if(value==="")
     {

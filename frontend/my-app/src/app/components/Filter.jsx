@@ -42,7 +42,7 @@ const changeCategory=(e)=>
     <div className="gap-1 w-full">
      <p>Choose a category</p>
             <select  className='hover:cursor-pointer w-full pt-1 pb-1 sm:pt-2 sm:pb-2 pl-2 font-bold  bg-zinc-100 text-[16px] border border-black ' required  value={category} onChange={changeCategory} >
-                  <option value={""}>Sve</option>
+                  <option value={""}>All</option>
                   <option value={"pcat_pants"}>Pants</option>
                   <option value={"pcat_shirts"}>Shirts</option>
                   <option value={"pcat_merch"}>Merch</option>

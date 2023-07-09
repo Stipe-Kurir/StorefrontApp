@@ -15,12 +15,6 @@ const medusa = new Medusa({
 
 const products = () => {
 
-  //POziv iz baze i onda šaljemo u ProductCard->slika,naziv,cijena!->i onda ce product card ispisati nasu karticu
-  //klikom na product card ulazimo u stranicu product info-> na toj stranici imamo dodatne informacije o tom proizvodu
-  //mozda je najbolje u product card poslat onda sve informacije o proizvodu i ispisati 3 koje nas zanimaju,
-  //onda klik na product card otvara se info stranica sa ostalim podacima o proivodu!
-
-
 const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -45,7 +39,6 @@ return (
         </div>
         
        <div className= "w-[300px] sm:w-9/12  justify-center grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7 pt-4 ">
-          {/* Ovdje ces mapirati, također i filtrirat pa ce se prikazat sta zelis */}
           <>
           {products.map((product) => (
             <Link key={product.id} href="/pages/product_info/[id]" as={`/pages/product_info/${product.id}`}>
