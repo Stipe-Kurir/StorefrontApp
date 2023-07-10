@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Medusa from "@medusajs/medusa-js"
 
 const medusa = new Medusa({ 
-  baseUrl:  "http://localhost:9000", 
+  baseUrl:  process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL, 
   maxRetries: 3, 
 })
 
@@ -41,7 +41,7 @@ const changeCategory=(e)=>
   return (
     <div className="gap-1 w-full">
      <p>Choose a category</p>
-            <select  className='hover:cursor-pointer w-full pt-1 pb-1 sm:pt-2 sm:pb-2 pl-2 font-bold  bg-zinc-100 text-[16px] border border-black ' required  value={category} onChange={changeCategory} >
+            <select  className='hover:cursor-pointer w-full pt-1 pb-1 sm:pt-2 sm:pb-2 pl-2 font-bold  bg-zinc-100  text-[12px] sm:text-[16px] border border-black ' required  value={category} onChange={changeCategory} >
                   <option value={""}>All</option>
                   <option value={"pcat_pants"}>Pants</option>
                   <option value={"pcat_shirts"}>Shirts</option>

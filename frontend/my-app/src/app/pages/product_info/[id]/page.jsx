@@ -2,17 +2,17 @@
 
 import React from 'react'
 import { useState,useEffect } from 'react'
-import {AiOutlineClose}  from 'react-icons/ai'
 import { useParams } from "next/navigation"
 
 import Medusa from "@medusajs/medusa-js"
 import ProductCardImage from '@/app/components/ProductCardImage'
 import ProductVariant from '@/app/components/ProductVariant'
-import ShowDetail from '@/app/components/ShowDetail'
+import Modal from '@/app/components/Modal'
+import ProductDetail from '@/app/components/ProductDetail'
 
 
 const medusa = new Medusa({ 
-  baseUrl:  "http://localhost:9000", 
+  baseUrl:  process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL, 
   maxRetries: 3, 
 })
 
@@ -29,18 +29,13 @@ const product_info = () => {
   const [numProducts,setNumProducts]=useState(1)
   const [currentVPrice,setCurrentVPrice]=useState("")
   const [defaultPrice,setDefaultPrice]=useState()
+  const [modal,setModal]=useState(false)
 
 
-  const handleCart=()=>{
-    alert("Item added to cart")
-  }
-
-  const changeDetails=()=>{
-    setDescription(!description)
-  }
   const changeNumber=(e)=>{
     setNumProducts(e.target.value)
   }
+
 
   useEffect(() => {
     medusa.products.retrieve(params.id)
@@ -96,13 +91,12 @@ const product_info = () => {
                       
            </div>
 
-           {/* STAVI DA TE VRATI NA PRODUCTS STRANICU  ili ako stignes napravi cart stranicu*/}
            <div className=' w-[80%] p-3  flex '>
-             <button className='w-full bg-slate-300 font-bold pt-3 pb-3' onClick={handleCart}>Add to cart</button>
+             <button className='w-full bg-slate-300 font-bold pt-3 pb-3 hover:underline' onClick={()=>setModal(!modal)}>Add to cart</button>
            </div>
            
            <div className='w-[80%] p-3'>
-             <button onClick={changeDetails} className="hover:underline">Product Details</button>
+             <button onClick={()=>setDescription(!description)} className="hover:underline">Product Details</button>
            </div>
          </div>
 
@@ -110,26 +104,13 @@ const product_info = () => {
 
           :
 
-          <div className='absolute top-[300px] w-[300px]  lg:w-[600px] bg-white flex flex-col shadow-2xl'>
-            <div className='w-full flex justify-end pt-2 pr-2'>
-            <AiOutlineClose size={15} className=" text-black font-bold cursor-pointer" onClick={changeDetails}/>
-            </div>
-            <div className='w-full flex flex-col items-center pb-2 font-bold text-[20px] sm:text-[25px]'>
-              <p>PRODUCT DETAILS</p>
-            </div>
-            <div className='w-full flex flex-col justify-start pl-2 pb-2 gap-1 text-[12px] sm:text-[16px] '>
-              <ShowDetail name="Name" value={product.title}/>
-              <ShowDetail name="Description" value={product.description}/>
-              <ShowDetail name="Material" value={product.material}/>
-              <ShowDetail name="Weight" value={product.weight}/>
-              <ShowDetail name="Length" value={product.length}/>
-              <ShowDetail name="Height" value={product.height}/>
-              <ShowDetail name="Origin country" value={product.origin_country}/>
-            </div>
-            </div>
+          <ProductDetail setDescription={setDescription} description={description} product={product}/>
 
       }
-
+      {
+      modal===true && <Modal setModal={setModal} modal={modal} />
+      }
+        
       </div> 
   )
 

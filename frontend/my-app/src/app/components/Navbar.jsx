@@ -35,7 +35,7 @@ const Navbar = () => {
 
 
   return (
-    <div className='fixed left-0 top-0 w-full h-20 z-50  bg-white'>
+    <div className='fixed left-0 top-0 w-full h-20 z-40  bg-white'>
       <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 gap-2 '>
       
         <Link href="/">
