@@ -47,7 +47,7 @@ return (
                     <>
                       {products.map((product) => (
                         <Link key={product.id} href="/pages/product_info/[id]" as={`/pages/product_info/${product.id}`}>
-                        <ProductCard naziv={product.title} slika={product.images[0].url} />
+                        <ProductCard name={product.title} image={product.images[0].url} />
                         </Link>
                           ))} 
                     </>

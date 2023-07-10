@@ -59,7 +59,7 @@ const product_info = () => {
      
          <div className='w-full sm:w-full  bg-slate-300 flex flex-col justify-center items-center gap-2'>
 
-          <ProductCardImage slike={prodImg} slika={product.thumbnail}/>
+          <ProductCardImage images={prodImg} image={product.thumbnail}/>
             
          </div>
       

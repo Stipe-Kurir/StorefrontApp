@@ -10,6 +10,11 @@ The user of the app can:
 - visit a product details page
 - choose among the product variants
 
+### Getting started
+
+- In `frontend` folder redirect to `my-app` folder and then run `npm install`,after that you can run `npm run dev`.
+
+- For the backend part of the project you can delete folder `my-medusa-store` and set up backend by following instuctions on this link: `https://docs.medusajs.com/development/backend/install`
 
 ### Project Description
 
@@ -17,7 +22,7 @@ Application has three pages:
 
 - Homepage
 - Products page
-- Prducts info page
+- Prduct info page
 
 #### Homepage
 
